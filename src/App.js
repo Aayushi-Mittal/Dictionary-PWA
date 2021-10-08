@@ -25,7 +25,23 @@ function App() {
   }, []);
   
   return (
-    <div>Hello World!</div>
+    <div className="App" 
+      style={{
+      height: "100vh",
+      backgroundColor: "#282c34",
+      color: "white",
+      transition: "all 0.5s linear",
+    }}>
+      <Container maxWidth="md"
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        height: "100vh",
+        justifyContent: "space-evenly",
+      }}>
+        Dictionary
+      </Container>
+    </div>
   );
 }
 
