@@ -9,6 +9,7 @@ function App() {
 
   const [word, setWord] = useState('');
   const [meanings, setMeanings] = useState([]);
+  const [category, setCategory] = useState('en');
 
   const dictionaryApi = async() => {
     try{
@@ -40,7 +41,7 @@ function App() {
         height: "100vh",
         justifyContent: "space-evenly",
       }}>
-        <Header/>
+        <Header category={category} setCategory={setCategory} word={word} setWord={setWord} />
       </Container>
     </div>
   );
