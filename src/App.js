@@ -3,6 +3,7 @@ import './App.css';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Container } from '@mui/material'
+import Header from './components/Header/Header'
 
 function App() {
 
@@ -39,7 +40,7 @@ function App() {
         height: "100vh",
         justifyContent: "space-evenly",
       }}>
-        Dictionary
+        <Header/>
       </Container>
     </div>
   );
