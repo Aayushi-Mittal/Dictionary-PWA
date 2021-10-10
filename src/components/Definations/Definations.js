@@ -1,10 +1,10 @@
 import React from 'react'
 import "./Definations.css"
 
-const Definations = () => {
+const Definations = ({word, category, meanings}) => {
     return (
-        <div>
-            Hello
+        <div className="meanings">
+            {word==="" ? (<span className="subTitle">Start by typing a word in search!</span>) : ("something")}
         </div>
     )
 }
