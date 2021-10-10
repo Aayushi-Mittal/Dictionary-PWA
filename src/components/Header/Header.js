@@ -15,6 +15,11 @@ const Header = ({category, setCategory, word, setWord}) => {
         },
       });
 
+      const handleChange = (language) => {
+          setCategory(language);
+          setWord("");
+        };
+
   return (
     <div className="Header">
       <span className="title">{word ? word : "Word Search"}</span>
@@ -24,14 +29,14 @@ const Header = ({category, setCategory, word, setWord}) => {
             className="search"
             id="filled-basic"
             value={word}
-            onChange={(e)=>setWord(e.target.value)}
+            onChange={handleChange}
             label="Search a Word"
           />
           <TextField
             select
             label="Language"
             value={category}
-            onChange={(e) => setCategory(e.target.value)}
+            onChange={handleChange}
             className="select"
           >
             <MenuItem>English</MenuItem>
