@@ -29,14 +29,14 @@ const Header = ({category, setCategory, word, setWord}) => {
             className="search"
             id="filled-basic"
             value={word}
-            onChange={handleChange}
+            onChange={(e)=>setWord(e.target.value)}
             label="Search a Word"
           />
           <TextField
             select
             label="Language"
             value={category}
-            onChange={handleChange}
+            onChange={(e) => setCategory(e.target.value)}
             className="select"
           >
             <MenuItem>English</MenuItem>

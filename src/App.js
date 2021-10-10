@@ -1,9 +1,10 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Container } from '@mui/material'
 import Header from './components/Header/Header'
+import Definations from './components/Definations/Definations'
 
 function App() {
 
@@ -11,9 +12,9 @@ function App() {
   const [meanings, setMeanings] = useState([]);
   const [category, setCategory] = useState('en');
 
-  const dictionaryApi = async() => {
+  const dictionaryApi = async(category, word) => {
     try{
-      const data = await axios.get('https://api.dictionaryapi.dev/api/v2/entries/en/plane');
+      const data = await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/${category}/${word}`);
       console.log(data);
       setMeanings(data.data);
       // console.log(meanings);
@@ -24,7 +25,7 @@ function App() {
 
   useEffect(()=>{
     dictionaryApi();
-  }, []);
+  }, [category, word]);
   
   return (
     <div className="App" 
@@ -42,6 +43,9 @@ function App() {
         justifyContent: "space-evenly",
       }}>
         <Header category={category} setCategory={setCategory} word={word} setWord={setWord} />
+        { meanings && 
+          (<Definations category={category} word={word} meanings={meanings}/>)
+        }
       </Container>
     </div>
   );
