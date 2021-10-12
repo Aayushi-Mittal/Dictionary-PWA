@@ -4,21 +4,16 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { TextField, MenuItem } from "@mui/material";
 import categories from "../../data/category";
 
-const Header = ({category, setCategory, word, setWord}) => {
+const Header = ({category, setCategory, word, setWord, lightMode}) => {
 
-    const darkTheme = createTheme({
-        palette: {
-          primary:{
-                main:'#FFFFFF',
-            },
-          type: 'dark',
-        },
-      });
-
-      const handleChange = (language) => {
-          setCategory(language);
-          setWord("");
-        };
+  const darkTheme = createTheme({
+      palette: {
+        primary:{
+              main:lightMode?'#000':'#FFFFFF',
+          },
+        type: lightMode?'light':'dark',
+      },
+    });
 
   return (
     <div className="Header">

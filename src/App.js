@@ -2,10 +2,12 @@
 import './App.css';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Container, Switch, withStyles } from "@material-ui/core";
-import { grey } from "@material-ui/core/colors";
+import { Container } from '@mui/material';
 import Header from './components/Header/Header';
 import Definations from './components/Definations/Definations';
+import { alpha, styled } from '@mui/material/styles';
+import { grey } from '@mui/material/colors';
+import Switch from '@mui/material/Switch';
 
 function App() {
 
@@ -14,19 +16,17 @@ function App() {
   const [category, setCategory] = useState('en');
   const [lightMode, setLightMode] = useState(false);
 
-  const DarkMode = withStyles({
-    switchBase: {
-      color: grey[50],
-      "&$checked": {
-        color: grey[900],
-      },
-      "&$checked + $track": {
-        backgroundColor: grey[500],
+  const DarkMode = styled(Switch)(({ theme }) => ({
+    '& .MuiSwitch-switchBase.Mui-checked': {
+      color: grey[500],
+      '&:hover': {
+        backgroundColor: alpha(grey[500], theme.palette.action.hoverOpacity),
       },
     },
-    checked: {},
-    track: {},
-  })(Switch);
+    '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
+      backgroundColor: grey[500],
+    },
+  }));
 
   const dictionaryApi = async() => {
     try{
@@ -48,8 +48,8 @@ function App() {
     <div className="App" 
       style={{
       height: "100vh",
-      backgroundColor: "#282c34",
-      color: "white",
+      backgroundColor: (lightMode)?"#fff":"#282c34",
+      color: (lightMode)?"#282c34":"#fff",
       transition: "all 0.5s linear",
     }}>
       <Container maxWidth="md"
@@ -63,9 +63,9 @@ function App() {
           <span>{(lightMode) ? "Light" : "Dark"} Mode: </span>
           <DarkMode checked={lightMode} onChange={()=>setLightMode(!lightMode)} />
         </div>
-        <Header category={category} setCategory={setCategory} word={word} setWord={setWord} />
+        <Header category={category} setCategory={setCategory} word={word} setWord={setWord} lightMode={lightMode} />
         { meanings && 
-          (<Definations category={category} word={word} meanings={meanings}/>)
+          (<Definations category={category} word={word} meanings={meanings} lightMode={lightMode}/>)
         }
       </Container>
     </div>
