@@ -3,6 +3,7 @@ import "./Header.css";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { TextField, MenuItem } from "@mui/material";
 import categories from "../../data/category";
+import { debounce } from "lodash";
 
 const Header = ({category, setCategory, word, setWord, lightMode}) => {
 
@@ -15,6 +16,10 @@ const Header = ({category, setCategory, word, setWord, lightMode}) => {
       },
     });
 
+  const handleSearch = debounce((text) => {
+    setWord(text);
+  }, 500);
+
   return (
     <div className="Header">
       <span className="title">{word ? word : "Word Search"}</span>
@@ -24,7 +29,7 @@ const Header = ({category, setCategory, word, setWord, lightMode}) => {
             className="search"
             id="filled-basic"
             value={word}
-            onChange={(e)=>setWord(e.target.value)}
+            onChange={(e)=>handleSearch(e.target.value)}
             label="Search a Word"
           />
           <TextField
