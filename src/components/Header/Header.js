@@ -1,20 +1,19 @@
 import React from "react";
 import "./Header.css";
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { TextField, MenuItem } from "@mui/material";
 import categories from "../../data/category";
 import { debounce } from "lodash";
 
-const Header = ({category, setCategory, word, setWord, lightMode}) => {
-
+const Header = ({ category, setCategory, word, setWord, lightMode }) => {
   const darkTheme = createTheme({
-      palette: {
-        primary:{
-              main:lightMode?'#000':'#FFFFFF',
-          },
-        type: lightMode?'light':'dark',
+    palette: {
+      primary: {
+        main: lightMode ? "#000" : "#FFFFFF",
       },
-    });
+      type: lightMode ? "light" : "dark",
+    },
+  });
 
   const handleSearch = debounce((text) => {
     setWord(text);
@@ -29,7 +28,7 @@ const Header = ({category, setCategory, word, setWord, lightMode}) => {
             className="search"
             id="filled-basic"
             value={word}
-            onChange={(e)=>handleSearch(e.target.value)}
+            onChange={(e) => handleSearch(e.target.value)}
             label="Search a Word"
           />
           <TextField
